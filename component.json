@@ -1,0 +1,135 @@
+{
+    "title": "IAM Service Account Credentials",
+    "description": "Creates short-lived, limited-privilege credentials for IAM service accounts.",
+    "docsUrl": "https://cloud.google.com/iam/docs/creating-short-lived-service-account-credentials",
+    "url": "https://api.apis.guru/v2/specs/googleapis.com/iamcredentials/v1/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://iamcredentials.googleapis.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "Oauth2": {
+                "label": "Oauth 2.0 authentication",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "iamcredentials_projects_serviceAccounts_generateAccessToken": {
+            "main": "./lib/actions/iamcredentials_projects_serviceAccounts_generateAccessToken.js",
+            "title": "Generates an OAuth 2.0 access token for a service account.",
+            "description": "Generates an OAuth 2.0 access token for a service account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iamcredentials_projects_serviceAccounts_generateAccessToken.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iamcredentials_projects_serviceAccounts_generateIdToken": {
+            "main": "./lib/actions/iamcredentials_projects_serviceAccounts_generateIdToken.js",
+            "title": "Generates an OpenID Connect ID token for a service account.",
+            "description": "Generates an OpenID Connect ID token for a service account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iamcredentials_projects_serviceAccounts_generateIdToken.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iamcredentials_projects_serviceAccounts_generateIdentityBindingAccessToken": {
+            "main": "./lib/actions/iamcredentials_projects_serviceAccounts_generateIdentityBindingAccessToken.js",
+            "title": "iamcredentials_projects_serviceAccounts_generateIdentityBindingAccessToken",
+            "description": "",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iamcredentials_projects_serviceAccounts_generateIdentityBindingAccessToken.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iamcredentials_projects_serviceAccounts_signBlob": {
+            "main": "./lib/actions/iamcredentials_projects_serviceAccounts_signBlob.js",
+            "title": "Signs a blob using a service account's system-managed private key.",
+            "description": "Signs a blob using a service account's system-managed private key.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iamcredentials_projects_serviceAccounts_signBlob.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "iamcredentials_projects_serviceAccounts_signJwt": {
+            "main": "./lib/actions/iamcredentials_projects_serviceAccounts_signJwt.js",
+            "title": "Signs a JWT using a service account's system-managed private key.",
+            "description": "Signs a JWT using a service account's system-managed private key.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/iamcredentials_projects_serviceAccounts_signJwt.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
